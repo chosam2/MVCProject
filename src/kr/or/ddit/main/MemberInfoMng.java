@@ -152,8 +152,6 @@ public class MemberInfoMng {
 		mv.setMem_tel(memTel);
 		mv.setMem_addr(memAddr);
 		
-	
-		
 		cnt = memberService.updateMember(mv);
 		
 		if (cnt > 0) {
@@ -162,7 +160,6 @@ public class MemberInfoMng {
 			System.out.println(memId + " 회원 추가 작업 실패!!");
 		}
 		
-
 	}
 
 	private void insertMember() {
@@ -225,13 +222,13 @@ public class MemberInfoMng {
 	private void displayMemberAll() {
 		System.out.println();
 		System.out.println("--------------------------------------------------------------------");
-		System.out.println(" ID		이름		전화번호				주소");
+		System.out.println(" ID		이름		전화번호		주소");
 		System.out.println("--------------------------------------------------------------------");
 
 		List<MemberVO> memList = memberService.getAllMemberList();
 
 		for (MemberVO mv : memList) {
-			System.out.println(mv.getMem_id() + "		" + mv.getMem_name() + "		" + mv.getMem_tel() + "		" + mv.getMem_addr());
+			System.out.println(mv.getMem_id() + "\t\t" + mv.getMem_name() + "\t" + mv.getMem_tel() + "\t" + mv.getMem_addr());
 			System.out.println("--------------------------------------------------------------------");
 		}
 

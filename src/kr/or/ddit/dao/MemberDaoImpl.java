@@ -43,7 +43,7 @@ public class MemberDaoImpl implements IMemberDao {
 		} finally {
 			disConnect();
 		}
-		return 1;
+		return cnt;
 	}
 
 	@Override
@@ -94,7 +94,7 @@ public class MemberDaoImpl implements IMemberDao {
 			disConnect();
 		}
 
-		return 0;
+		return cnt;
 	}
 
 	@Override
@@ -172,7 +172,7 @@ public class MemberDaoImpl implements IMemberDao {
 	}
 
 	/**
-	 *  연결 끊을 떄 finally에 들어갈 예외처리.
+	 *  연결 끊을 때 finally에 들어갈 예외처리.
 	 *  자원 반납(close)
 	 */
 	private void disConnect() {

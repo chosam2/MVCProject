@@ -14,7 +14,7 @@ public interface IMemberDao {
 	/**
 	 * MemberVO에 담겨진 자료를 DB에 insert하는 메서드
 	 * @param mv DB에 insert할 자료가 저장된 MemverVO객체
-	 * @return DB작업이 성공하면 1이상의 값이 반환되고 실패하면 0이 반환된
+	 * @return DB작업이 성공하면 1이상의 값이 반환되고 실패하면 0이 반환됨
 	 */
 	public int insertMember(MemberVO mv);
 	
