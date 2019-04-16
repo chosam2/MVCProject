@@ -1,7 +1,9 @@
-package kr.or.ddit.dao;
+package kr.or.ddit.service;
 
 import java.util.List;
 
+import kr.or.ddit.dao.IMemberDao;
+import kr.or.ddit.dao.MemberDaoImpl;
 import kr.or.ddit.vo.MemberVO;
 
 public class MemberServiceImpl implements IMemberService {
@@ -37,6 +39,11 @@ public class MemberServiceImpl implements IMemberService {
 	@Override
 	public boolean chkMemberInfo(String memId) {
 		return memDao.chkMemberInfo(memId);
+	}
+
+	@Override
+	public List<MemberVO> getSearchMember(MemberVO mv) {
+		return memDao.getSearchMember(mv);
 	}
 
 }

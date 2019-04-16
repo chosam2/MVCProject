@@ -132,7 +132,7 @@ public class MemberDaoImpl implements IMemberDao {
 		} finally {
 			disConnect();
 		}
-		
+
 		return memList;
 	}
 
@@ -197,6 +197,69 @@ public class MemberDaoImpl implements IMemberDao {
 			} catch (SQLException ee) {
 			}
 
+	}
+
+	@Override
+	public List<MemberVO> getSearchMember(MemberVO mv) {
+		List<MemberVO> memList = new ArrayList<>();
+
+		try {
+			conn = DBUtil2.getConnection();
+
+			String sql = "select * from mymember where 1=1 "; // where 1=1 쓰는거랑 안쓰는거 똑같음. 쓰는 이유는? => and로 이어주기 위해서
+			// "select * from mymember where 1=1 and mem_id = ? and mem_name = ? and mem_tel = ? and mem_addr = like '%' || ? || '%' ";
+
+			if (mv.getMem_id() != null && !mv.getMem_id().equals("")) {
+				sql += " and mem_id = ? ";
+			}
+			if (mv.getMem_name() != null && !mv.getMem_name().equals("")) {
+				sql += " and mem_name = ? ";
+			}
+			if (mv.getMem_tel() != null && !mv.getMem_tel().equals("")) {
+				sql += " and mem_tel = ? ";
+			}
+			if (mv.getMem_addr() != null && !mv.getMem_addr().equals("")) {
+				sql += " and mem_addr like '%' || ? || '%' "; // ex)'%대전$'
+			}
+
+			pstmt = conn.prepareStatement(sql);
+
+			int index = 1;
+
+			if (mv.getMem_id() != null && !mv.getMem_id().equals("")) {
+				pstmt.setString(index++, mv.getMem_id());
+			}
+			if (mv.getMem_name() != null && !mv.getMem_name().equals("")) {
+				pstmt.setString(index++, mv.getMem_name());
+			}
+			if (mv.getMem_tel() != null && !mv.getMem_tel().equals("")) {
+				pstmt.setString(index++, mv.getMem_tel());
+			}
+			if (mv.getMem_addr() != null && !mv.getMem_addr().equals("")) {
+				pstmt.setString(index++, mv.getMem_addr());
+			}
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				MemberVO memVO = new MemberVO();
+
+				memVO.setMem_id(rs.getString("mem_id"));
+				memVO.setMem_name(rs.getString("mem_name"));
+				memVO.setMem_tel(rs.getString("mem_tel"));
+				memVO.setMem_addr(rs.getString("mem_addr"));
+
+				memList.add(memVO); // 회원정보 한건 추가하기
+
+			}
+
+		} catch (SQLException e) {
+		} finally {
+			disConnect();
+		}
+
+		return memList;
 	}
 
 }

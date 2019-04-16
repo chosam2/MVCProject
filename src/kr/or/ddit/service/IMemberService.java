@@ -1,4 +1,4 @@
-package kr.or.ddit.dao;
+package kr.or.ddit.service;
 
 import java.util.List;
 
@@ -44,4 +44,11 @@ public interface IMemberService {
 	 * @return 해당 회원ID가 있으면 true, 없으면 false
 	 */
 	public boolean chkMemberInfo(String memId);
+
+	/**
+	 * 주어진 회원정보를 이용하여 회원을 검색해주는 메서드
+	 * @param mv 검색할 회원정보
+	 * @return MemberVO객체를 담고 있는 List객체
+	 */
+	public List<MemberVO> getSearchMember(MemberVO mv);
 }
