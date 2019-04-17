@@ -219,7 +219,7 @@ public class MemberDaoImpl implements IMemberDao {
 				sql += " and mem_tel = ? ";
 			}
 			if (mv.getMem_addr() != null && !mv.getMem_addr().equals("")) {
-				sql += " and mem_addr like '%' || ? || '%' "; // ex)'%대전$'
+				sql += " and mem_addr like '%' || ? || '%' "; // ex)'%대전%'
 			}
 
 			pstmt = conn.prepareStatement(sql);
